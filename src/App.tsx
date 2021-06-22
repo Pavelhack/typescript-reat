@@ -1,26 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Navbar } from './components/Navbar';
+import { Todo } from './components/TodoForm';
+import { useState } from 'react';
+import { Context } from './components/Context';
+import { Route, Switch } from 'react-router-dom';
+import { About } from './components/About';
+import { Login } from './components/Login';
 
-function App() {
+const App: React.FC = () => {
+  const [context, setContext] = useState<any>(0);
+  const [isAutorized, setAutorized] = useState<any>(false);
+  
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Context.Provider value={{context: context, setContext: setContext, isAutorized: isAutorized, setAutorized: setAutorized}} >
+      <>
+      <Navbar/>
+      <Switch>
+        <Route exact path = "/" render = {() => <Todo/>}/>
+        <Route path = "/About" render = {() => <About/>} />
+        <Route path = "/Login" render = {() => <Login/>}/>
+      </Switch>
+      </>
+    </Context.Provider>
   );
 }
 
-export default App;
+export default App

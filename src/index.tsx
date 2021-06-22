@@ -3,10 +3,20 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter } from 'react-router-dom';
+import { Auth0Provider } from "@auth0/auth0-react";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <Auth0Provider
+        domain="dev-mdngv0fh.eu.auth0.com"
+        clientId="kuVhbf6AZMD9wLCePorPiJcLQIqIrm7E"
+        redirectUri= "https://pavelhack.github.io/CurrenyTEST/"
+      >
+        <App />
+      </Auth0Provider>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );
